@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home_black_24dp" />
+    <item
+        android:id="@+id/menu_gejala"
+        android:title="@string/gejala"
+        android:icon="@drawable/icons_virus" />
+    <item
+        android:id="@+id/menu_pencegahan"
+        android:title="@string/pencegahan"
+        android:icon="@drawable/icons_hands" />
+    <item
+        android:id="@+id/menu_ionovasi"
+        android:title="@string/inovasi"
+        android:icon="@drawable/icons_ideas" />
+</menu>
