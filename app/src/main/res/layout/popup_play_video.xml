@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background9"
-    android:gravity="center_vertical"
-    android:padding="16dp">
+    android:background="@android:color/transparent"
+    android:gravity="bottom" >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:elevation="8dp"
-        android:background="@drawable/background5" >
+        android:background="@android:color/white"
+        android:elevation="8dp" >
 
         <ImageButton
             android:id="@+id/btn_batal"
@@ -61,10 +60,10 @@
 
         <WebView
             android:id="@+id/web_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

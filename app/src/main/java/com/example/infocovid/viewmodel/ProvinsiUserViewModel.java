@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 public class ProvinsiUserViewModel extends ViewModel {
-    private MutableLiveData<ArrayList<User>> mutableLiveDataProvinsi = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<User>> mutableLiveDataProvinsi = new MutableLiveData<>();
 
     public void setMutableLiveDataProvinsi(){
         AsyncHttpClient client = new AsyncHttpClient();

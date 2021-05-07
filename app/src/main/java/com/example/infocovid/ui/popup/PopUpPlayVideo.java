@@ -2,11 +2,14 @@ package com.example.infocovid.ui.popup;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -20,6 +23,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.infocovid.R;
 import com.example.infocovid.model.Inovasi;
+import com.example.infocovid.ui.activity.MainActivity;
 
 public class PopUpPlayVideo {
 
@@ -31,12 +35,16 @@ public class PopUpPlayVideo {
         assert inflater != null;
         final View popupView = inflater.inflate(R.layout.popup_play_video, null);
 
+        popupView.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.slide_up));
+
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.MATCH_PARENT;
 
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
 
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        popupWindow.setAnimationStyle(R.style.Animation);
+
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
 
         TextView txtInovasi = popupView.findViewById(R.id.txt_inovasi);
         txtInovasi.setText(inovasi.getJudul());
@@ -45,18 +53,23 @@ public class PopUpPlayVideo {
         buttonBatal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popupWindow.dismiss();
+                popupView.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.slide_down));
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                       popupWindow.dismiss();
+                    }
+                }, 500);
             }
         });
 
         webView = popupView.findViewById(R.id.web_view);
 
-        webView.setWebViewClient(new WebViewClient());
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView.getSettings().setBuiltInZoomControls(false);
+        webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        webView.getSettings().setDefaultFontSize(18);
+        webView.getSettings().setLoadWithOverviewMode(true);
 
         String kode = inovasi.getKode();
         muatVideo(kode);
@@ -65,9 +78,7 @@ public class PopUpPlayVideo {
     private void muatVideo(String kodeVideo){
         int width = getScreenWidth();
         int height = getScreenHeight();
-        Log.d("Width", String.valueOf(width));
-        Log.d("Height", String.valueOf(height));
-        String kodeHTML = "<center> <iframe width=\""+width/2+"\" height=\""+height/7+"\" src=\"https://www.youtube.com/embed/" +
+        String kodeHTML = "<center> <iframe width=\""+width+"\" height=\""+height/2.5+"\" src=\"https://www.youtube.com/embed/" +
                 kodeVideo+
                 "\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe> </center>";
         webView.loadData(kodeHTML, "text/html; charset=uft-8", null);

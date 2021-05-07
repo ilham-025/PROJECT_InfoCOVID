@@ -1,10 +1,8 @@
 package com.example.infocovid.ui.fragment;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,7 +30,6 @@ public class HomeFragment extends Fragment {
     private TextView txtKonfIndo, txtSembuhIndo, txtMeninggalIndo;
     private TextView txtKonfWorld, txtSembuhWorld, txtMeninggalWorld, txtBaruWorld;
     private TextView txtTanggal, txtProvinsi, txtNamaUser, txtLihatSemua;
-    private ConstraintLayout constraintLayout, constraintLayout2, constraintLayout3;
     private DataIndoViewModel viewModel;
 
     @Override
@@ -53,9 +50,6 @@ public class HomeFragment extends Fragment {
         txtProvinsi = view.findViewById(R.id.txt_provinsi);
         txtNamaUser = view.findViewById(R.id.txt_user_name);
         txtLihatSemua = view.findViewById(R.id.txt_lihat_semua);
-        constraintLayout = view.findViewById(R.id.linearLayout);
-        constraintLayout2 = view.findViewById(R.id.linearLayout2);
-        constraintLayout3 = view.findViewById(R.id.constraintLayout3);
         return view;
     }
 
@@ -90,10 +84,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
-        constraintLayout.setMinWidth(getScreenWidth()/3-55);
-        constraintLayout2.setMinWidth(getScreenWidth()/3-55);
-        constraintLayout3.setMinWidth(getScreenWidth()/3-55);
 
         viewModel.setMutableLiveDataProvinsi();
         viewModel.getDataProvinsi().observe(getViewLifecycleOwner(), new Observer<ArrayList<DataIndo>>() {
@@ -130,9 +120,6 @@ public class HomeFragment extends Fragment {
         String ganti = NumberFormat.getNumberInstance(Locale.US).format(angka);
         ganti = ganti.replace("," , ".");
         return ganti;
-    }
-    private static int getScreenWidth() {
-        return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 
     @Override

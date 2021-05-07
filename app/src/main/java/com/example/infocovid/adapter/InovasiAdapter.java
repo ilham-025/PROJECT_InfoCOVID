@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class InovasiAdapter extends RecyclerView.Adapter<InovasiAdapter.ListViewHolder> {
 
     private ArrayList<Inovasi> listInovasi;
-    private OnClickListener onClickListener;
+    private final OnClickListener onClickListener;
 
     public InovasiAdapter(OnClickListener onClickListener){
         this.onClickListener = onClickListener;

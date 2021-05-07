@@ -31,7 +31,7 @@ public class PopUpEditUserClass {
 
         final LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
         assert inflater != null;
-        final View popupView = inflater.inflate(R.layout.popup_edit_user, null);
+        final View popupView = inflater.inflate(R.layout.popup_edit_user,null);
 
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.MATCH_PARENT;

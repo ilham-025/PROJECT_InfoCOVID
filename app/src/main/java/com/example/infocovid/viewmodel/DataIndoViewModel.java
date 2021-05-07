@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 public class DataIndoViewModel extends ViewModel {
-    private MutableLiveData<ArrayList<DataIndo>> mutableLiveDataProvinsi = new MutableLiveData<>();
-    private MutableLiveData<DataIndo> mutableLiveDataIndo = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<DataIndo>> mutableLiveDataProvinsi = new MutableLiveData<>();
+    private final MutableLiveData<DataIndo> mutableLiveDataIndo = new MutableLiveData<>();
 
     public void setMutableLiveDataProvinsi(){
         AsyncHttpClient client = new AsyncHttpClient();
@@ -61,7 +61,7 @@ public class DataIndoViewModel extends ViewModel {
 
     public void setMutableLiveDataIndo(){
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = "https://indonesia-covid-19.mathdro.id/api";
+        String url = "https://covid-19.mathdro.id/api/countries/Indonesia";
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -70,9 +70,9 @@ public class DataIndoViewModel extends ViewModel {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     DataIndo dataIndo = new DataIndo();
-                    dataIndo.setPositif(jsonObject.getInt("jumlahKasus"));
-                    dataIndo.setSembuh(jsonObject.getInt("sembuh"));
-                    dataIndo.setMeninggal(jsonObject.getInt("meninggal"));
+                    dataIndo.setPositif(jsonObject.getJSONObject("confirmed").getInt("value"));
+                    dataIndo.setSembuh(jsonObject.getJSONObject("recovered").getInt("value"));
+                    dataIndo.setMeninggal(jsonObject.getJSONObject("deaths").getInt("value"));
                     mutableLiveDataIndo.postValue(dataIndo);
                 } catch (JSONException e) {
                     Log.d("Error ", e.toString());

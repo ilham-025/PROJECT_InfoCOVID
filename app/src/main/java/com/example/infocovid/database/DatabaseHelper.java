@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static String DATABASE_NAME = "dbinfocovid";
+    private static final String DATABASE_NAME = "dbinfocovid";
     private static final int DATABASE_VERSION = 1;
     private static final String  SQL_CREATE_USER = String.format("CREATE TABLE %s"+"(%s INTEGER PRIMARY KEY AUTOINCREMENT,%s TEXT NOT NULL, %s TEXT NOT NULL, %s INTEGER NOT NULL)",DatabaseContract.TABLE_USER, DatabaseContract.UserColumns._ID, DatabaseContract.UserColumns.NAMA,DatabaseContract.UserColumns.PROVINSI,DatabaseContract.UserColumns.KODE);
 

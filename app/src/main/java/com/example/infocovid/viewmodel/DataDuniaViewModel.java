@@ -13,7 +13,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class DataDuniaViewModel extends ViewModel {
 
-    private MutableLiveData<DataDunia> mutableLiveDataWorld = new MutableLiveData<>();
+    private final MutableLiveData<DataDunia> mutableLiveDataWorld = new MutableLiveData<>();
 
     public void setMutableLiveDataWorld(){
         AsyncHttpClient client = new AsyncHttpClient();

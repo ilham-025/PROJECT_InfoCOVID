@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.example.infocovid.model.User;
-import java.util.ArrayList;
 import static com.example.infocovid.database.DatabaseContract.UserColumns.KODE;
 import static com.example.infocovid.database.DatabaseContract.UserColumns.NAMA;
 import static com.example.infocovid.database.DatabaseContract.UserColumns.PROVINSI;
@@ -79,7 +78,7 @@ public class UserHelper {
     }
 
     public Boolean checkIfExists(){
-        Boolean exits = false;
+        boolean exits = false;
         Cursor cursor = database.rawQuery("SELECT * FROM "+ DatabaseContract.TABLE_USER,null);
 
         if(cursor.getCount()>0){
